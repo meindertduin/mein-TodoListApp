@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TodoListApplication.Models;
 using System.Globalization;
+using Syncfusion.Windows.Shared;
+using System.Windows;
 
 namespace TodoListApplication.ViewModels
 {
@@ -19,18 +21,72 @@ namespace TodoListApplication.ViewModels
         public BindableCollection<TodoModel> Friday { get; set; }
         public BindableCollection<TodoModel> Saturday { get; set; }
 
+        private DateTime loadedDate;
+
+        private string _loadedWeek;
+        private string[] _loadedDates = new string[7];
+
+        public string LoadedWeek
+        {
+            get 
+            { 
+                return _loadedWeek; 
+            }
+            set 
+            { 
+                _loadedWeek = value;
+                NotifyOfPropertyChange(() => LoadedWeek);
+            }
+        }
+
+        public string[] LoadedDates
+        {
+            get
+            {
+                return _loadedDates; 
+            }
+            set 
+            {
+                _loadedDates = value;
+                NotifyOfPropertyChange(() => LoadedDates);
+            }
+        }
 
         public WeeklyTodoViewerViewModel()
         {
-            Sunday = new BindableCollection<TodoModel>() { new TodoModel() { Id = Guid.NewGuid(), Hour = 12, Minute = 30, TodoDate = DateTime.Now, TodoTitle = "Clean up room", TodoDescription = "Do it now" } };
-            SetUpDayCollections(DateTime.Now);
-
+            loadedDate = DateTime.Now;
+            SetUpDayCollections(loadedDate);
+            LoadedWeek = loadedDate.Day.ToString();
+            SetLoadedDatesAlligned();
         }
 
+        public void LoadPreviousWeek()
+        {
+            loadedDate = loadedDate.AddDays(-(double)7.0);
+            SetUpDayCollections(loadedDate);
+            LoadedWeek = loadedDate.Day.ToString();
+            SetLoadedDatesAlligned();
+        }
+
+        public void LoadNextWeek()
+        {
+            loadedDate = loadedDate.AddDays((double)7.0);
+            SetUpDayCollections(loadedDate);
+            LoadedWeek = loadedDate.Day.ToString();
+            SetLoadedDatesAlligned();
+        }
+
+        public void ChangeCheckedValueOfTodo(Guid id)
+        {
+            var todoWriter = new TodoListModel();
+            todoWriter.ChangeCompleStatusOfTodo(id);
+        }
         private void SetUpDayCollections(DateTime date)
         {
             var todoReader = new TodoListModel();
             var todosOfWeek = todoReader.GiveTodosOfWeek(date);
+
+            CreateCollections();
 
             foreach(var todo in todosOfWeek)
             {
@@ -38,64 +94,72 @@ namespace TodoListApplication.ViewModels
             }
         }
 
-        private void SortTodoToCollection(TodoModel todo)
+        private void SetLoadedDatesAlligned()
+        {
+            int dayOfWeekOfLoaded = GetDayOfWeek(loadedDate);
+            DateTime firstDateOfWeek = loadedDate.AddDays((double)-dayOfWeekOfLoaded);
+            for (int i = 0; i < _loadedDates.Length; i++)
+            {
+                _loadedDates[i] = firstDateOfWeek.Day.ToString() + " " + firstDateOfWeek.ToString("MMMM");
+                firstDateOfWeek = firstDateOfWeek.AddDays((double)1.0);
+            }
+            NotifyOfPropertyChange(() => LoadedDates);
+        }
+
+        private void CreateCollections()
+        {
+            Sunday = new BindableCollection<TodoModel>();
+            Monday = new BindableCollection<TodoModel>();
+            Tuesday = new BindableCollection<TodoModel>();
+            Whensday = new BindableCollection<TodoModel>();
+            Thursday = new BindableCollection<TodoModel>();
+            Friday = new BindableCollection<TodoModel>();
+            Saturday = new BindableCollection<TodoModel>();
+
+            NotifyOfPropertyChange(() => Sunday);
+            NotifyOfPropertyChange(() => Monday);
+            NotifyOfPropertyChange(() => Tuesday);
+            NotifyOfPropertyChange(() => Whensday);
+            NotifyOfPropertyChange(() => Thursday);
+            NotifyOfPropertyChange(() => Friday);
+            NotifyOfPropertyChange(() => Saturday);
+        }
+
+        //returns the day of week in integer with 1 being monday and 7 being sunday
+        private int GetDayOfWeek(DateTime date)
         {
             var greg = new GregorianCalendar();
-            int dayOfWeek = (int)greg.GetDayOfWeek(todo.TodoDate);
+            return (int)greg.GetDayOfWeek(date);
+        }
 
+        private void SortTodoToCollection(TodoModel todo)
+        {
+
+            int dayOfWeek = GetDayOfWeek(todo.TodoDate);
             switch (dayOfWeek)
             {
                 default:
                     break;
-                case 7:
-                    if (Sunday == null)
-                    {
-                        Sunday = new BindableCollection<TodoModel>();
-                    }
-                    Sunday.Add(todo);
-                    break;
                 case 1:
-                    if (Monday == null)
-                    {
-                        Monday = new BindableCollection<TodoModel>();
-                    }
                     Monday.Add(todo);
                     break;
                 case 2:
-                    if (Tuesday == null)
-                    {
-                        Tuesday = new BindableCollection<TodoModel>();
-                    }
                     Tuesday.Add(todo);
                     break;
                 case 3:
-                    if(Whensday == null)
-                    {
-                        Whensday = new BindableCollection<TodoModel>();
-                    }
                     Whensday.Add(todo);
                     break;
                 case 4:
-                    if (Thursday == null)
-                    {
-                        Thursday = new BindableCollection<TodoModel>();
-                    }
-                    Thursday.Add(todo);
-                    
+                    Thursday.Add(todo);     
                     break;
                 case 5:
-                    if (Friday == null)
-                    {
-                        Friday = new BindableCollection<TodoModel>();
-                    }
                     Friday.Add(todo);
                     break;
                 case 6:
-                    if (Saturday == null)
-                    {
-                        Saturday = new BindableCollection<TodoModel>();
-                    }
                     Saturday.Add(todo);
+                    break;
+                case 0:
+                    Sunday.Add(todo);
                     break;
             }
         }

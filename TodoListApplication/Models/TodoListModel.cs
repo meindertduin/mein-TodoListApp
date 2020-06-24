@@ -20,9 +20,26 @@ namespace TodoListApplication.Models
 
             todo.Id = Guid.NewGuid();
             todoList.Add(todo);
-           
-            string jsonString = SerializeTodoList();
-            WriteJsonToTextFile(jsonString);
+            WriteToJsonFile();
+        }
+
+        public void ChangeCompleStatusOfTodo(Guid id)
+        {
+            DeserializeJsonFile();
+            TodoModel foundTodo = null;
+            foreach(var todo in todoList)
+            {
+                if(id == todo.Id)
+                {
+                    foundTodo = todo;
+                    break;
+                }
+            }
+            if(foundTodo != null)
+            {
+                foundTodo.IsCompleted = !foundTodo.IsCompleted;
+                WriteToJsonFile();
+            }
         }
 
         public List<TodoModel> GiveTodosOfWeek(DateTime date)
@@ -55,6 +72,12 @@ namespace TodoListApplication.Models
                 }
             }
             return result;
+        }
+
+        private void WriteToJsonFile()
+        {
+            string jsonString = SerializeTodoList();
+            WriteJsonToTextFile(jsonString);
         }
 
         private string SerializeTodoList()

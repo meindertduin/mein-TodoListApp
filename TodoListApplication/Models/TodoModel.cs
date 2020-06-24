@@ -14,6 +14,7 @@ namespace TodoListApplication.Models
         public int Hour { get; set; }
         public int Minute { get; set; }
         public string TodoDescription { get; set; }
+        public bool IsCompleted { get; set; }
 
 
     }

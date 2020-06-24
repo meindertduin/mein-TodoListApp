@@ -72,6 +72,7 @@ namespace TodoListApplication.ViewModels
             todo.Hour = Int32.Parse(Hour);
             todo.Minute = Int32.Parse(Minute);
             todo.TodoDescription = TodoDescription;
+            todo.IsCompleted = false;
 
             todoList.AddTodo(todo);
 
