@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace TodoListApplication.Models
 {
@@ -22,6 +23,38 @@ namespace TodoListApplication.Models
            
             string jsonString = SerializeTodoList();
             WriteJsonToTextFile(jsonString);
+        }
+
+        public List<TodoModel> GiveTodosOfWeek(DateTime date)
+        {
+            DeserializeJsonFile();
+            List<TodoModel> result = new List<TodoModel>();
+            var greg = new GregorianCalendar();
+
+            foreach(var todo in todoList)
+            {
+                if(greg.GetWeekOfYear(todo.TodoDate, CalendarWeekRule.FirstDay, DayOfWeek.Sunday)
+                         == greg.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Sunday))
+                {
+                    result.Add(todo);
+                }
+            }
+            result = result.OrderBy(o => (float)o.Hour + (o.Minute / 60.0)).ToList();
+            return result;
+        }   
+
+        public List<TodoModel> GiveTodosOfDate(DateTime date)
+        {
+            DeserializeJsonFile();
+            List<TodoModel> result = new List<TodoModel>();
+            foreach(var todo in todoList)
+            {
+                if(todo.TodoDate.Date == date.Date)
+                {
+                    result.Add(todo);
+                }
+            }
+            return result;
         }
 
         private string SerializeTodoList()
