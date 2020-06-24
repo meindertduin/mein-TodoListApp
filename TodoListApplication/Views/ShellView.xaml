@@ -1,0 +1,42 @@
+﻿<Window x:Class="TodoListApplication.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TodoListApplication.Views"
+            
+        
+        
+        mc:Ignorable="d"
+        Title="ShellView" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        
+        <!-- Row 1 -->
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1" Background="black" Grid.ColumnSpan="4"> 
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                    <Button x:Name="LoadAddTodoPage" Content="Add todo" Height="30" Width="100" Margin="5" Padding="5"/>
+                    <Button x:Name="LoadViewTodoPage" Content="Show todo's" Height="30" Width="100" Margin="5" Padding="5"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        
+        <!-- Row 2 -->
+        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.Row="2"
+                        Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="20" />
+        
+
+    </Grid>
+</Window>

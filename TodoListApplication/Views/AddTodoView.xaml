@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="TodoListApplication.Views.AddTodoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TodoListApplication.Views"
+
+             
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="600" d:DesignWidth="600" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        
+        <!-- Row 1 -->
+        <TextBlock Text="Add a todo" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+        
+        <!-- Row 2 -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="Title: " Width="50" Margin="5"  />
+            <TextBox  Width="300" Margin="5" x:Name="TodoTitle" />
+        </StackPanel>
+        
+        <!-- Row 3 -->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+            <TextBlock Text="Date: " Width="50" Margin="5"/>
+            <DatePicker SelectedDate="{Binding Path=TodoDate}" Margin="5" Width="100" />
+        </StackPanel>
+        
+        <!-- Row 4  Time picker box -->
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+            <TextBlock Text="Time: " Width="50" Margin="5"/>
+            <TextBox x:Name="Hour" Width="20" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
+            <TextBlock Text=" : " TextAlignment="center" FontWeight="Bold" />
+            <TextBox x:Name="Minute" Width="20" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
+        </StackPanel>
+
+        <!-- Row 6 -->
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="Description: " Margin="5" />
+        
+        <!-- Row 7 -->
+        <TextBox Grid.Row="6" Grid.Column="1"  Margin="5" 
+                 TextWrapping="Wrap" AcceptsReturn="True"  VerticalScrollBarVisibility="Visible" 
+                 MaxHeight="150" Height="150" x:Name="TodoDescription" />
+        
+        <!-- Row 8 -->
+        <Button x:Name="SubmitTodo" Grid.Row="7" Grid.Column="1" Content="Add Todo" Margin="5" Width="75" />
+
+    </Grid>
+</UserControl>
