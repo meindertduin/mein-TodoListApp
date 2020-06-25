@@ -13,12 +13,19 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="LightSeaGreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -35,31 +42,27 @@
         
 
         <!-- Row 2 -->
-        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5" >
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Grid.Column="1" Text="Sunday" TextAlignment="center" Width="100" FontWeight="Bold"/>
-                <TextBlock Grid.Column="1" Text="Monday" TextAlignment="center" Width="100" FontWeight="Bold"/>
-                <TextBlock Grid.Column="1" Text="Tuesday" TextAlignment="center" Width="100" FontWeight="Bold"/>
-                <TextBlock Grid.Column="1" Text="Whensday" TextAlignment="center" Width="100" FontWeight="Bold"/>
-                <TextBlock Grid.Column="1" Text="Thursday" TextAlignment="center" Width="100" FontWeight="Bold"/>
-                <TextBlock Grid.Column="1" Text="Friday" TextAlignment="center" Width="100" FontWeight="Bold"/>
-                <TextBlock Grid.Column="1" Text="Saturday" TextAlignment="center" Width="100" FontWeight="Bold"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" >
-                <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[0]}" TextAlignment="center" Width="100" />
-                <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[1]}" TextAlignment="center" Width="100" />
-                <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[2]}" TextAlignment="center" Width="100" />
-                <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[3]}" TextAlignment="center" Width="100" />
-                <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[4]}" TextAlignment="center" Width="100" />
-                <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[5]}" TextAlignment="center" Width="100" />
-                <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[6]}" TextAlignment="center" Width="100" />
-            </StackPanel>
-        </StackPanel>
-        
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Sunday" TextAlignment="center" FontWeight="Bold"/>
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="Monday" TextAlignment="center"  FontWeight="Bold"/>
+        <TextBlock Grid.Column="3" Grid.Row="2" Text="Tuesday" TextAlignment="center"  FontWeight="Bold"/>
+        <TextBlock Grid.Column="4" Grid.Row="2" Text="Whensday" TextAlignment="center"  FontWeight="Bold"/>
+        <TextBlock Grid.Column="5" Grid.Row="2" Text="Thursday" TextAlignment="center"  FontWeight="Bold"/>
+        <TextBlock Grid.Column="6" Grid.Row="2" Text="Friday" TextAlignment="center"  FontWeight="Bold"/>
+        <TextBlock Grid.Column="7" Grid.Row="2" Text="Saturday" TextAlignment="center" FontWeight="Bold"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=LoadedDates[0]}" TextAlignment="center" Width="100" />
+        <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding Path=LoadedDates[1]}" TextAlignment="center" Width="100" />
+        <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding Path=LoadedDates[2]}" TextAlignment="center" Width="100" />
+        <TextBlock Grid.Column="4" Grid.Row="3" Text="{Binding Path=LoadedDates[3]}" TextAlignment="center" Width="100" />
+        <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Path=LoadedDates[4]}" TextAlignment="center" Width="100" />
+        <TextBlock Grid.Column="6" Grid.Row="3" Text="{Binding Path=LoadedDates[5]}" TextAlignment="center" Width="100" />
+        <TextBlock Grid.Column="7" Grid.Row="3" Text="{Binding Path=LoadedDates[6]}" TextAlignment="center" Width="100" />
+
+
         <!-- Row 3 -->
-        <ScrollViewer  Grid.Column="1" Grid.Row="3" Background="Aqua"  Width="700" MaxHeight="500" VerticalScrollBarVisibility="auto">
-            <StackPanel Orientation="Horizontal">
-                <ItemsControl x:Name="Sunday" Width="100">
+        <ScrollViewer  Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="4" Background="Aqua" MaxHeight="500" VerticalScrollBarVisibility="auto">
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="4">
+                <ItemsControl x:Name="Sunday" Grid.Column="1">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5" Background="{Binding Color}">
@@ -175,7 +178,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl x:Name="Thursday" Width="100">
+                <ItemsControl x:Name="Thursday" Width="100" Grid.Column="4">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
