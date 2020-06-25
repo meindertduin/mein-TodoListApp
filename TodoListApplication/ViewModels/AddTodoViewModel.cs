@@ -87,8 +87,7 @@ namespace TodoListApplication.ViewModels
         }
 
         private void FillInAndAddTodo()
-        {
-            Random rand = new Random();
+        {  
             TodoListModel todoList = new TodoListModel();
 
             var todo = new TodoModel();
@@ -108,9 +107,28 @@ namespace TodoListApplication.ViewModels
 
             todo.TodoDescription = TodoDescription;
             todo.IsCompleted = false;
-            todo.Color = new SolidColorBrush(Color.FromRgb((byte)rand.Next(1, 255), (byte)rand.Next(1, 255), (byte)rand.Next(1, 233)));
+            todo.Color = GiveBrightRandomColor();
 
             todoList.AddTodo(todo);
+        }
+
+        private Brush GiveBrightRandomColor()
+        {
+            Random rand = new Random();
+            int colorValueOne = 0;
+            int colorValueTwo = 0;
+            int colorValueThree = 0;
+            int colorValueSum = 0;
+
+            while(colorValueSum < 500)
+            {
+                colorValueOne = rand.Next(1, 255);
+                colorValueTwo = rand.Next(1, 255);
+                colorValueThree = rand.Next(1, 255);
+                colorValueSum = colorValueOne + colorValueTwo + colorValueThree;
+            }
+            
+            return new SolidColorBrush(Color.FromRgb((byte)colorValueOne, (byte)colorValueTwo, (byte)colorValueThree));
         }
 
         private void EmptyFormFields()

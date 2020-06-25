@@ -12,32 +12,39 @@ namespace TodoListApplication.Models
     public class TodoListModel
     {
         private List<TodoModel> todoList = new List<TodoModel>();
-        private string filePath = @"D:\Dev\Test";
-
+        private string filePath = Directory.GetCurrentDirectory();
         public void AddTodo(TodoModel todo)
         {
             DeserializeJsonFile();
-
             todo.Id = Guid.NewGuid();
+
+            if (todoList == null)
+            {
+                todoList = new List<TodoModel>();
+                WriteToJsonFile();
+            }
+
             todoList.Add(todo);
             WriteToJsonFile();
         }
 
         public void ChangeCompleStatusOfTodo(Guid id)
         {
-            DeserializeJsonFile();
-            TodoModel foundTodo = null;
-            foreach(var todo in todoList)
+            var todoToChange = FindTodoModel(id);
+            if(todoToChange != null)
             {
-                if(id == todo.Id)
-                {
-                    foundTodo = todo;
-                    break;
-                }
+                todoToChange.IsCompleted = !todoToChange.IsCompleted;
+                WriteToJsonFile();
             }
-            if(foundTodo != null)
+        }
+
+        public void DeleteTodo(Guid id)
+        {
+            DeserializeJsonFile();
+            var todoToDelete = FindTodoModel(id);
+            if (todoToDelete != null)
             {
-                foundTodo.IsCompleted = !foundTodo.IsCompleted;
+                todoList.Remove(todoToDelete);
                 WriteToJsonFile();
             }
         }
@@ -48,14 +55,23 @@ namespace TodoListApplication.Models
             List<TodoModel> result = new List<TodoModel>();
             var greg = new GregorianCalendar();
 
-            foreach(var todo in todoList)
+            if(todoList == null)
             {
-                if(greg.GetWeekOfYear(todo.TodoDate, CalendarWeekRule.FirstDay, DayOfWeek.Sunday)
-                         == greg.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Sunday))
+                todoList = new List<TodoModel>();
+                WriteToJsonFile();
+            }
+            if(todoList.Count > 0)
+            {
+                foreach (var todo in todoList)
                 {
-                    result.Add(todo);
+                    if (greg.GetWeekOfYear(todo.TodoDate, CalendarWeekRule.FirstDay, DayOfWeek.Sunday)
+                             == greg.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Sunday))
+                    {
+                        result.Add(todo);
+                    }
                 }
             }
+            
             result = result.OrderBy(o => (float)o.Hour + (o.Minute / 60.0)).ToList();
             return result;
         }   
@@ -74,6 +90,21 @@ namespace TodoListApplication.Models
             return result;
         }
 
+        private TodoModel FindTodoModel(Guid id)
+        {
+            DeserializeJsonFile();
+            TodoModel foundTodo = null;
+            foreach (var todo in todoList)
+            {
+                if (id == todo.Id)
+                {
+                    foundTodo = todo;
+                    break;
+                }
+            }
+            return foundTodo;
+        }
+
         private void WriteToJsonFile()
         {
             string jsonString = SerializeTodoList();
@@ -82,7 +113,7 @@ namespace TodoListApplication.Models
 
         private string SerializeTodoList()
         {
-            string jsonString = String.Empty;
+            string jsonString = string.Empty;
             if(todoList.Count > 0)
             {
                 jsonString = JsonConvert.SerializeObject(todoList, Formatting.Indented);
@@ -92,8 +123,19 @@ namespace TodoListApplication.Models
 
         private void DeserializeJsonFile()
         {
-            string fileStringValue = File.ReadAllText(filePath + "\\todos.txt");
-            todoList = JsonConvert.DeserializeObject<List<TodoModel>>(fileStringValue);
+            if (File.Exists(filePath + @"\todos.txt"))
+            {
+                string fileStringValue = File.ReadAllText(filePath + @"\todos.txt");
+                todoList = JsonConvert.DeserializeObject<List<TodoModel>>(fileStringValue);
+            }
+            else
+            {
+                File.CreateText(filePath + @"\todos.txt");
+                WriteJsonToTextFile("[]");
+                string fileStringValue = File.ReadAllText(filePath + @"\todos.txt");
+                todoList = JsonConvert.DeserializeObject<List<TodoModel>>(fileStringValue);
+            }
+            
         }
 
         private void WriteJsonToTextFile(string jsonString)

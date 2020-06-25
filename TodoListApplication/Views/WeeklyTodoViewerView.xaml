@@ -87,6 +87,32 @@
                                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
                                         <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
                                     </ScrollViewer>
+                                    <Button Margin="5" Content="Delete" Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <TextBlock TextDecorations="Underline">
+                                                    <ContentPresenter />
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="Red" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="DarkRed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -116,6 +142,32 @@
                                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
                                         <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
                                     </ScrollViewer>
+                                    <Button Margin="5" Content="Delete" Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <TextBlock TextDecorations="Underline">
+                                                    <ContentPresenter />
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="Red" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="DarkRed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -145,6 +197,32 @@
                                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
                                         <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
                                     </ScrollViewer>
+                                    <Button Margin="5" Content="Delete" Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <TextBlock TextDecorations="Underline">
+                                                    <ContentPresenter />
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="Red" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="DarkRed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -174,6 +252,32 @@
                                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
                                         <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
                                     </ScrollViewer>
+                                    <Button Margin="5" Content="Delete" Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <TextBlock TextDecorations="Underline">
+                                                    <ContentPresenter />
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="Red" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="DarkRed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -203,6 +307,32 @@
                                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
                                         <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
                                     </ScrollViewer>
+                                    <Button Margin="5" Content="Delete" Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <TextBlock TextDecorations="Underline">
+                                                    <ContentPresenter />
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="Red" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="DarkRed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -232,6 +362,32 @@
                                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
                                         <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
                                     </ScrollViewer>
+                                    <Button Margin="5" Content="Delete" Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <TextBlock TextDecorations="Underline">
+                                                    <ContentPresenter />
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="Red" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="DarkRed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -261,6 +417,32 @@
                                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
                                         <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
                                     </ScrollViewer>
+                                    <Button Margin="5" Content="Delete" Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="DeleteTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <TextBlock TextDecorations="Underline">
+                                                    <ContentPresenter />
+                                                </TextBlock>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Foreground" Value="Red" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="DarkRed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

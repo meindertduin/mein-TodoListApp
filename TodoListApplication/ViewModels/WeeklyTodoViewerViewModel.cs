@@ -85,6 +85,14 @@ namespace TodoListApplication.ViewModels
             var todoWriter = new TodoListModel();
             todoWriter.ChangeCompleStatusOfTodo(id);
         }
+
+        public void DeleteTodo(Guid id)
+        {
+            var todoWriter = new TodoListModel();
+            todoWriter.DeleteTodo(id);
+            SetUpDayCollections(loadedDate);
+            SetLoadedDatesAlligned();
+        }
         private void SetUpDayCollections(DateTime date)
         {
             var todoReader = new TodoListModel();
