@@ -13,24 +13,28 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="LightSeaGreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
+        
+        <!-- Row 1 -->
         <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="1" Grid.Column="1">
             <Button x:Name="LoadPreviousWeek" Content="previous" Margin="5" Width="50" />
             <TextBlock x:Name="LoadedWeek" Margin="5" FontWeight="Bold" Width="60" TextAlignment="center"/>
             <Button x:Name="LoadNextWeek" Margin="5" Content="Next" Width="50"/>
+            <TextBlock x:Name="CurrentDate" Grid.Row="1" Grid.Column="2" Margin="5" FontWeight="Bold" />
         </StackPanel>
+        
+
+        <!-- Row 2 -->
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock Grid.Column="1" Text="Sunday" TextAlignment="center" Width="100" FontWeight="Bold"/>
@@ -51,210 +55,214 @@
                 <TextBlock Grid.Column="1" Text="{Binding Path=LoadedDates[6]}" TextAlignment="center" Width="100" />
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Width="700" Grid.Column="1" Grid.Row="3">
-            <ItemsControl x:Name="Sunday" Width="100">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5" Background="{Binding Color}">
-                            <StackPanel Orientation="Vertical" >
-                                <TextBlock Text="{Binding FullTime}" />
-                                <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
-                                <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                        <i:EventTrigger EventName="Unchecked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </CheckBox>
-                                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
-                                    <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl x:Name="Monday" Width="100">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding FullTime}" />
-                                <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
-                                <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                        <i:EventTrigger EventName="Unchecked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </CheckBox>
-                                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
-                                    <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl x:Name="Tuesday" Width="100">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding FullTime}" />
-                                <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
-                                <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                        <i:EventTrigger EventName="Unchecked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </CheckBox>
-                                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
-                                    <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl x:Name="Whensday" Width="100">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding FullTime}" />
-                                <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
-                                <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                        <i:EventTrigger EventName="Unchecked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </CheckBox>
-                                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
-                                    <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl x:Name="Thursday" Width="100">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding FullTime}" />
-                                <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
-                                <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                        <i:EventTrigger EventName="Unchecked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </CheckBox>
-                                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
-                                    <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl x:Name="Friday" Width="100">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding FullTime}" />
-                                <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
-                                <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                        <i:EventTrigger EventName="Unchecked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </CheckBox>
-                                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
-                                    <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl x:Name="Saturday" Width="100">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding FullTime}" />
-                                <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
-                                <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                        <i:EventTrigger EventName="Unchecked">
-                                            <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
-                                                <cal:Parameter Value="{Binding Id}" />
-                                            </cal:ActionMessage>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </CheckBox>
-                                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
-                                    <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+        
+        <!-- Row 3 -->
+        <ScrollViewer  Grid.Column="1" Grid.Row="3" Background="Aqua"  Width="700" MaxHeight="500" VerticalScrollBarVisibility="auto">
+            <StackPanel Orientation="Horizontal">
+                <ItemsControl x:Name="Sunday" Width="100">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5" Background="{Binding Color}">
+                                <StackPanel Orientation="Vertical" >
+                                    <TextBlock Text="{Binding FullTime}" />
+                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
+                                        <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl x:Name="Monday" Width="100">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FullTime}" />
+                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
+                                        <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl x:Name="Tuesday" Width="100">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FullTime}" />
+                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
+                                        <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl x:Name="Whensday" Width="100">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FullTime}" />
+                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
+                                        <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl x:Name="Thursday" Width="100">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FullTime}" />
+                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
+                                        <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl x:Name="Friday" Width="100">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FullTime}" />
+                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
+                                        <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl x:Name="Saturday" Width="100">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FullTime}" />
+                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <cal:ActionMessage MethodName="ChangeCheckedValueOfTodo">
+                                                    <cal:Parameter Value="{Binding Id}" />
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="auto">
+                                        <TextBlock Width="Auto" TextWrapping="Wrap" Text="{Binding TodoDescription}"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

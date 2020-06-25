@@ -16,6 +16,6 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <ContentControl Grid.Row="1" Grid.Column="1" x:Name="ActiveItem"/>
+        <ContentControl Grid.Row="0" Grid.Column="0" x:Name="ActiveItem"/>
     </Grid>
 </UserControl>

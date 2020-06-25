@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using TodoListApplication.Models;
 
 namespace TodoListApplication.ViewModels
@@ -17,8 +18,7 @@ namespace TodoListApplication.ViewModels
         private string _minute;
         private string _hour;
         private string _todoDescription;
-
-        private TodoListModel todoList = new TodoListModel();
+        private string _notification = string.Empty;
 
         public AddTodoViewModel()
         {
@@ -61,21 +61,41 @@ namespace TodoListApplication.ViewModels
             set { _todoDescription = value; }
         }
 
+        public string Notification
+        {
+            get { return _notification; }
+            set 
+            { 
+                _notification = value;
+                NotifyOfPropertyChange(() => Notification);
+            }
+        }
+
         public bool CanSubmitTodo
         {
             get
             {
-                return !String.IsNullOrEmpty(TodoTitle);
+                return !string.IsNullOrEmpty(TodoTitle);
             }
         }
 
         public void SubmitTodo()
         {
+            FillInAndAddTodo();
+            EmptyFormFields();
+            GiveFillInNotification();
+        }
+
+        private void FillInAndAddTodo()
+        {
+            Random rand = new Random();
+            TodoListModel todoList = new TodoListModel();
+
             var todo = new TodoModel();
             todo.TodoTitle = TodoTitle;
             todo.TodoDate = TodoDate;
 
-            if(!string.IsNullOrEmpty(Hour) || !string.IsNullOrEmpty(Minute))
+            if (!string.IsNullOrEmpty(Hour) || !string.IsNullOrEmpty(Minute))
             {
                 todo.Hour = Int32.Parse(Hour);
                 todo.Minute = Int32.Parse(Minute);
@@ -88,9 +108,32 @@ namespace TodoListApplication.ViewModels
 
             todo.TodoDescription = TodoDescription;
             todo.IsCompleted = false;
+            todo.Color = new SolidColorBrush(Color.FromRgb((byte)rand.Next(1, 255), (byte)rand.Next(1, 255), (byte)rand.Next(1, 233)));
 
             todoList.AddTodo(todo);
+        }
 
+        private void EmptyFormFields()
+        {
+            TodoTitle = string.Empty;
+
+            Hour = string.Empty;
+            NotifyOfPropertyChange(() => Hour);
+
+            Minute = string.Empty;
+            NotifyOfPropertyChange(() => Minute);
+
+            TodoDescription = string.Empty;
+            NotifyOfPropertyChange(() => TodoDescription);
+
+            TodoDate = DateTime.Now;
+        }
+
+        private async void GiveFillInNotification()
+        {
+            Notification = "Form succesfully sumbited";
+            await Task.Delay(5000);
+            Notification = string.Empty;
         }
 
 

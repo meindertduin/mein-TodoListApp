@@ -26,7 +26,8 @@ namespace TodoListApplication.ViewModels
 
         private string _loadedWeek;
         private string[] _loadedDates = new string[7];
-        private Random rand = new Random();
+
+        public string CurrentDate { get; set; } = "Today: " + DateTime.Today.ToString("MMMM") + " " + DateTime.Now.Day.ToString();
 
         public string LoadedWeek
         {
@@ -36,7 +37,7 @@ namespace TodoListApplication.ViewModels
             }
             set 
             { 
-                _loadedWeek = value;
+                _loadedWeek = "week: " + value;
                 NotifyOfPropertyChange(() => LoadedWeek);
             }
         }
@@ -58,15 +59,16 @@ namespace TodoListApplication.ViewModels
         {
             loadedDate = DateTime.Now;
             SetUpDayCollections(loadedDate);
-            LoadedWeek = loadedDate.Day.ToString();
+            LoadedWeek = GetWeekOfYear(loadedDate).ToString();
             SetLoadedDatesAlligned();
+
         }
 
         public void LoadPreviousWeek()
         {
             loadedDate = loadedDate.AddDays(-(double)7.0);
             SetUpDayCollections(loadedDate);
-            LoadedWeek = loadedDate.Day.ToString();
+            LoadedWeek = GetWeekOfYear(loadedDate).ToString();
             SetLoadedDatesAlligned();
         }
 
@@ -74,7 +76,7 @@ namespace TodoListApplication.ViewModels
         {
             loadedDate = loadedDate.AddDays((double)7.0);
             SetUpDayCollections(loadedDate);
-            LoadedWeek = loadedDate.Day.ToString();
+            LoadedWeek = GetWeekOfYear(loadedDate).ToString();
             SetLoadedDatesAlligned();
         }
 
@@ -92,7 +94,6 @@ namespace TodoListApplication.ViewModels
 
             foreach(var todo in todosOfWeek)
             {
-                todo.Color = new SolidColorBrush(Color.FromRgb((byte)rand.Next(1, 255), (byte)rand.Next(1, 255), (byte)rand.Next(1, 233)));
                 SortTodoToCollection(todo);
             }
         }
@@ -133,6 +134,13 @@ namespace TodoListApplication.ViewModels
         {
             var greg = new GregorianCalendar();
             return (int)greg.GetDayOfWeek(date);
+        }
+
+        private int GetWeekOfYear(DateTime todoDate)
+        {
+            var greg = new GregorianCalendar();
+            int weekNumber = greg.GetWeekOfYear(todoDate, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
+            return weekNumber;
         }
 
         private void SortTodoToCollection(TodoModel todo)

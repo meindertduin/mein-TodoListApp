@@ -11,26 +11,23 @@
         Title="ShellView" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         
         <!-- Row 1 -->
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" MinWidth="200">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" MinWidth="200">
             <Button x:Name="LoadAddTodoPage" Content="Add todo" Height="30" Width="100" Padding="5"/>
             <Button x:Name="LoadViewTodoPage" Content="Show todo's" Height="30" Width="100"  Padding="5"/>
         </StackPanel>
 
         <!-- Row 2 -->
-        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.Row="2"
+        <ContentControl x:Name="ActiveItem" Grid.Column="0" Grid.Row="2"
                         Grid.RowSpan="3" />
         
 

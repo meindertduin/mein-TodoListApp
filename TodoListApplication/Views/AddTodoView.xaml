@@ -28,23 +28,26 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        
+
         <!-- Row 1 -->
-        <TextBlock Text="Add a todo" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
-        
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Add a todo" FontWeight="Bold" Margin="5"/>
+            <TextBlock x:Name="Notification" Margin="5" Foreground="Green" />
+        </StackPanel>
+
         <!-- Row 2 -->
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
             <TextBlock Text="Title: " Width="50" Margin="5"  />
             <TextBox  Width="300" Margin="5" x:Name="TodoTitle" />
         </StackPanel>
-        
+
         <!-- Row 3 -->
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
             <TextBlock Text="Date: " Width="50" Margin="5"/>
             <DatePicker  SelectedDate="{Binding Path=TodoDate}" 
                          Margin="5" Width="100"  />
         </StackPanel>
-        
+
         <!-- Row 4  Time picker box -->
         <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
             <TextBlock Text="Time: " Width="50" Margin="5"/>
@@ -55,12 +58,12 @@
 
         <!-- Row 6 -->
         <TextBlock Grid.Row="5" Grid.Column="1" Text="Description: " Margin="5" />
-        
+
         <!-- Row 7 -->
         <TextBox Grid.Row="6" Grid.Column="1"  Margin="5" 
                  TextWrapping="Wrap" AcceptsReturn="True"  VerticalScrollBarVisibility="Visible" 
                  MaxHeight="150" Height="150" x:Name="TodoDescription" />
-        
+
         <!-- Row 8 -->
         <Button x:Name="SubmitTodo" Grid.Row="7" Grid.Column="1" Content="Add Todo" Margin="5" Width="75" />
 
