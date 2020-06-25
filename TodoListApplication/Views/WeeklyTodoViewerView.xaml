@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TodoListApplication.Views"
+             xmlns:st="http://schemas.spicytaco.io/"
              mc:Ignorable="d" 
              
              xmlns:cal="http://www.caliburnproject.org"
@@ -28,12 +29,12 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         
         <!-- Row 1 -->
-        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="1" Grid.Column="1">
+        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4">
             <Button x:Name="LoadPreviousWeek" Content="previous" Margin="5" Width="50" />
             <TextBlock x:Name="LoadedWeek" Margin="5" FontWeight="Bold" Width="60" TextAlignment="center"/>
             <Button x:Name="LoadNextWeek" Margin="5" Content="Next" Width="50"/>
@@ -60,15 +61,15 @@
 
 
         <!-- Row 3 -->
-        <ScrollViewer  Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="4" Background="Aqua" MaxHeight="500" VerticalScrollBarVisibility="auto">
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="4">
-                <ItemsControl x:Name="Sunday" Grid.Column="1">
+        <ScrollViewer  Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="4" Background="Aqua" VerticalScrollBarVisibility="auto">
+            <st:StackPanel Orientation="Horizontal" MarginBetweenChildren="10">
+                <ItemsControl x:Name="Sunday"  st:StackPanel.Fill="Fill">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5" Background="{Binding Color}">
                                 <StackPanel Orientation="Vertical" >
-                                    <TextBlock Text="{Binding FullTime}" />
-                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding FullTime}" FontWeight="bold" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding TodoTitle}" TextAlignment="Center" FontWeight="bold" TextWrapping="Wrap"/>
                                     <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
@@ -91,13 +92,13 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl x:Name="Monday" Width="100">
+                <ItemsControl x:Name="Monday" st:StackPanel.Fill="Fill">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding FullTime}" />
-                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding FullTime}" FontWeight="bold" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding TodoTitle}" TextAlignment="Center" FontWeight="bold" TextWrapping="Wrap"/>
                                     <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
@@ -120,13 +121,13 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl x:Name="Tuesday" Width="100">
+                <ItemsControl x:Name="Tuesday" st:StackPanel.Fill="Fill">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding FullTime}" />
-                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding FullTime}" FontWeight="bold" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding TodoTitle}" TextAlignment="Center" FontWeight="bold" TextWrapping="Wrap"/>
                                     <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
@@ -149,13 +150,13 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl x:Name="Whensday" Width="100">
+                <ItemsControl x:Name="Whensday" st:StackPanel.Fill="Fill">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding FullTime}" />
-                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding FullTime}" FontWeight="bold" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding TodoTitle}" TextAlignment="Center" FontWeight="bold" TextWrapping="Wrap"/>
                                     <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
@@ -178,13 +179,13 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl x:Name="Thursday" Width="100" Grid.Column="4">
+                <ItemsControl x:Name="Thursday" st:StackPanel.Fill="Fill">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding FullTime}" />
-                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding FullTime}" FontWeight="bold" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding TodoTitle}" TextAlignment="Center" FontWeight="bold" TextWrapping="Wrap"/>
                                     <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
@@ -207,13 +208,13 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl x:Name="Friday" Width="100">
+                <ItemsControl x:Name="Friday" st:StackPanel.Fill="Fill">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding FullTime}" />
-                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding FullTime}" FontWeight="bold" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding TodoTitle}" TextAlignment="Center" FontWeight="bold" TextWrapping="Wrap"/>
                                     <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
@@ -236,13 +237,13 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <ItemsControl x:Name="Saturday" Width="100">
+                <ItemsControl x:Name="Saturday" st:StackPanel.Fill="Fill">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="5"  Background="{Binding Color}">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding FullTime}" />
-                                    <TextBlock Text="{Binding TodoTitle}" FontWeight="bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding FullTime}" FontWeight="bold" TextAlignment="Center"/>
+                                    <TextBlock Text="{Binding TodoTitle}" TextAlignment="Center" FontWeight="bold" TextWrapping="Wrap"/>
                                     <CheckBox Content="Completed" IsChecked="{Binding IsCompleted}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
@@ -265,7 +266,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-            </StackPanel>
+            </st:StackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>
