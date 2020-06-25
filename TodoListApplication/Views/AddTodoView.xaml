@@ -41,7 +41,8 @@
         <!-- Row 3 -->
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
             <TextBlock Text="Date: " Width="50" Margin="5"/>
-            <DatePicker SelectedDate="{Binding Path=TodoDate}" Margin="5" Width="100" />
+            <DatePicker  SelectedDate="{Binding Path=TodoDate}" 
+                         Margin="5" Width="100"  />
         </StackPanel>
         
         <!-- Row 4  Time picker box -->

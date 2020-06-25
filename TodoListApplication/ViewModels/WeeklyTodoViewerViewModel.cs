@@ -8,6 +8,7 @@ using TodoListApplication.Models;
 using System.Globalization;
 using Syncfusion.Windows.Shared;
 using System.Windows;
+using System.Windows.Media;
 
 namespace TodoListApplication.ViewModels
 {
@@ -25,6 +26,7 @@ namespace TodoListApplication.ViewModels
 
         private string _loadedWeek;
         private string[] _loadedDates = new string[7];
+        private Random rand = new Random();
 
         public string LoadedWeek
         {
@@ -90,6 +92,7 @@ namespace TodoListApplication.ViewModels
 
             foreach(var todo in todosOfWeek)
             {
+                todo.Color = new SolidColorBrush(Color.FromRgb((byte)rand.Next(1, 255), (byte)rand.Next(1, 255), (byte)rand.Next(1, 233)));
                 SortTodoToCollection(todo);
             }
         }

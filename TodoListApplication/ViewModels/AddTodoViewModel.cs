@@ -20,6 +20,11 @@ namespace TodoListApplication.ViewModels
 
         private TodoListModel todoList = new TodoListModel();
 
+        public AddTodoViewModel()
+        {
+            TodoDate = DateTime.Now;
+        }
+
         public string TodoTitle
         {
             get { return _todoTitle; }
@@ -69,8 +74,18 @@ namespace TodoListApplication.ViewModels
             var todo = new TodoModel();
             todo.TodoTitle = TodoTitle;
             todo.TodoDate = TodoDate;
-            todo.Hour = Int32.Parse(Hour);
-            todo.Minute = Int32.Parse(Minute);
+
+            if(!string.IsNullOrEmpty(Hour) || !string.IsNullOrEmpty(Minute))
+            {
+                todo.Hour = Int32.Parse(Hour);
+                todo.Minute = Int32.Parse(Minute);
+            }
+            else
+            {
+                todo.Hour = 0;
+                todo.Minute = 0;
+            }
+
             todo.TodoDescription = TodoDescription;
             todo.IsCompleted = false;
 

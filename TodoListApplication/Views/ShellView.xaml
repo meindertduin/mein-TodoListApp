@@ -24,18 +24,14 @@
         </Grid.RowDefinitions>
         
         <!-- Row 1 -->
-        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1" Background="black" Grid.ColumnSpan="4"> 
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                    <Button x:Name="LoadAddTodoPage" Content="Add todo" Height="30" Width="100" Margin="5" Padding="5"/>
-                    <Button x:Name="LoadViewTodoPage" Content="Show todo's" Height="30" Width="100" Margin="5" Padding="5"/>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-        
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" MinWidth="200">
+            <Button x:Name="LoadAddTodoPage" Content="Add todo" Height="30" Width="100" Padding="5"/>
+            <Button x:Name="LoadViewTodoPage" Content="Show todo's" Height="30" Width="100"  Padding="5"/>
+        </StackPanel>
+
         <!-- Row 2 -->
         <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.Row="2"
-                        Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="20" />
+                        Grid.RowSpan="3" />
         
 
     </Grid>
